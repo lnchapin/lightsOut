@@ -51,7 +51,6 @@ componentDidMount(){
 
   createBoard() {
     let board = [];
-    // TODO: create array-of-arrays of true/false values
     for (var i = 0; i < this.props.nrows; i++) {
       let row = []
       for (var j = 0; j < this.props.ncols; j++) {
@@ -102,7 +101,7 @@ componentDidMount(){
     // TODO
     return(
       <div className="Board">
-
+        
       </div>
     )
   }
