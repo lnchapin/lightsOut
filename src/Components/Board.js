@@ -98,11 +98,14 @@ componentDidMount(){
 
     // make table board
 
+
     // TODO
     return(
-      <div className="Board">
-        
-      </div>
+      <table className="Board">
+        <tbody>
+          {this.state.board.map((row, rIndex)=> <tr key={rIndex}>{row.map((single, sIndex)=><Cell key={`${rIndex}-${sIndex}`} isLit={single}/>)}</tr>)}
+        </tbody>
+      </table>
     )
   }
 }
