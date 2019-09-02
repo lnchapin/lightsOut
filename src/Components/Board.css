@@ -1,3 +1,15 @@
+body{
+  font-family: 'Press Start 2P', cursive;
+}
+
 .Board {
   margin: 0 auto;
+}
+
+button{
+  margin: 2%;
+  font-size: 20px;
+  font-family: 'Press Start 2P', cursive;
+  padding: 1%;
+  box-shadow: inset -4px -4px darkgrey;
 }

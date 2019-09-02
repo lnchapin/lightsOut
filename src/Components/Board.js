@@ -121,11 +121,15 @@ componentDidMount(){
       )
     } else {
       return(
+        <>
+        <h1>Lights Out</h1>
         <table className="Board">
           <tbody>
             {this.state.board.map((row, rIndex)=> <tr key={rIndex}>{row.map((single, sIndex)=><Cell key={`${rIndex}-${sIndex}`} isLit={single} flipCellsAroundMe={()=>this.flipCellsAround(`${rIndex}-${sIndex}`)}/>)}</tr>)}
           </tbody>
         </table>
+        <button onClick={this.playAgain}>Try a New Board</button>
+      </>
       )
     }
   }
