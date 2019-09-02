@@ -51,11 +51,11 @@ componentDidMount(){
 
   createBoard() {
     let board = [];
-    for (var i = 0; i < this.props.nrows; i++) {
+    for (let i = 0; i < this.props.nrows; i++) {
       let row = []
-      for (var j = 0; j < this.props.ncols; j++) {
+      for (let j = 0; j < this.props.ncols; j++) {
         let onOff = Math.floor(Math.random()* 8)
-        {onOff == this.props.chanceLightStartsOn ? row.push(true):row.push(false)}
+        row.push(onOff === this.props.chanceLightStartsOn)
       }
       board.push(row)
     }
