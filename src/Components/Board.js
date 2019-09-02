@@ -74,7 +74,7 @@ componentDidMount(){
     let {ncols, nrows} = this.props;
     let board = this.state.board;
     let [y, x] = coord.split("-").map(Number);
-    let hasWon = false;
+
 
     function flipCell(y, x) {
       // if this coord is actually on board, flip it
@@ -90,24 +90,9 @@ componentDidMount(){
     flipCell(y,x+1);
 
     // win when every cell is turned off
-    function isTrue(row) {
-      let winner = false
-      console.log(row);
-      row.map(currentValue => {
-        for (var i = 0; i < currentValue.length; i++) {
-          if (currentValue[i] === true){
-            winner = true
-          } else {
-            return winner = false
-          }
-        }
-        })
-        hasWon = winner
-        return winner
-      }
+    let hasWon = board.every(row => row.every(cell => !cell))
 
     // TODO: determine is the game has been won
-    isTrue(board)
     this.setState({board, hasWon});
   }
 
