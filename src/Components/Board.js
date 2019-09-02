@@ -55,7 +55,7 @@ componentDidMount(){
       let row = []
       for (var j = 0; j < this.props.ncols; j++) {
         let onOff = Math.floor(Math.random()* 8)
-        {onOff == this.props.chanceLightStartsOn ? row.push(1):row.push(0)}
+        {onOff == this.props.chanceLightStartsOn ? row.push(true):row.push(false)}
       }
       board.push(row)
     }
@@ -85,8 +85,25 @@ componentDidMount(){
     flipCell(y,x+1);
 
     // win when every cell is turned off
-    // TODO: determine is the game has been won
+    function isTrue(row) {
+      let winner = false
+      console.log(row);
+      row.map(currentValue => {
+        for (var i = 0; i < currentValue.length; i++) {
+          if (currentValue[i] === true){
+            winner = true
+          } else {
+            return winner = false
+          }
+        }
+        })
+        hasWon = winner
+        return winner
+      }
 
+    // TODO: determine is the game has been won
+    isTrue(board)
+    console.log(hasWon);
     this.setState({board, hasWon});
   }
 
@@ -96,20 +113,27 @@ componentDidMount(){
   render() {
 
     // if the game is won, just show a winning msg & render nothing else
-
+    if (this.state.hasWon) {
+      return(
+        <h1>You win</h1>
+      )
+    } else {
+      return(
+        <table className="Board">
+          <tbody>
+            {this.state.board.map((row, rIndex)=> <tr key={rIndex}>{row.map((single, sIndex)=><Cell key={`${rIndex}-${sIndex}`} isLit={single} flipCellsAroundMe={()=>this.flipCellsAround(`${rIndex}-${sIndex}`)}/>)}</tr>)}
+          </tbody>
+        </table>
+      )
+    }
     // TODO
 
     // make table board
 
 
     // TODO
-    return(
-      <table className="Board">
-        <tbody>
-          {this.state.board.map((row, rIndex)=> <tr key={rIndex}>{row.map((single, sIndex)=><Cell key={`${rIndex}-${sIndex}`} isLit={single} flipCellsAroundMe={()=>this.flipCellsAround(`${rIndex}-${sIndex}`)}/>)}</tr>)}
-        </tbody>
-      </table>
-    )
+
+
   }
 }
 
