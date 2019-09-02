@@ -63,6 +63,11 @@ componentDidMount(){
     return board
   }
 
+  playAgain = () => {
+    this.setState({ hasWon: false })
+    this.createBoard()
+  }
+
   /** handle changing a cell: update board & determine if winner */
 
   flipCellsAround(coord) {
@@ -103,19 +108,16 @@ componentDidMount(){
 
     // TODO: determine is the game has been won
     isTrue(board)
-    console.log(hasWon);
     this.setState({board, hasWon});
   }
 
-
-  /** Render game board or winning message. */
-
   render() {
-
-    // if the game is won, just show a winning msg & render nothing else
     if (this.state.hasWon) {
       return(
-        <h1>You win</h1>
+        <>
+          <h1>You win</h1>
+          <button onClick={this.playAgain}>Play Again</button>
+        </>
       )
     } else {
       return(
@@ -126,14 +128,6 @@ componentDidMount(){
         </table>
       )
     }
-    // TODO
-
-    // make table board
-
-
-    // TODO
-
-
   }
 }
 
