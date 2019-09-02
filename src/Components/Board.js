@@ -69,22 +69,25 @@ componentDidMount(){
     let {ncols, nrows} = this.props;
     let board = this.state.board;
     let [y, x] = coord.split("-").map(Number);
-
+    let hasWon = false;
 
     function flipCell(y, x) {
       // if this coord is actually on board, flip it
-
       if (x >= 0 && x < ncols && y >= 0 && y < nrows) {
         board[y][x] = !board[y][x];
       }
     }
-
     // TODO: flip this cell and the cells around it
+    flipCell(y,x);
+    flipCell(y-1,x);
+    flipCell(y+1,x);
+    flipCell(y,x-1);
+    flipCell(y,x+1);
 
     // win when every cell is turned off
     // TODO: determine is the game has been won
 
-    // this.setState({board, hasWon});
+    this.setState({board, hasWon});
   }
 
 
@@ -103,7 +106,7 @@ componentDidMount(){
     return(
       <table className="Board">
         <tbody>
-          {this.state.board.map((row, rIndex)=> <tr key={rIndex}>{row.map((single, sIndex)=><Cell key={`${rIndex}-${sIndex}`} isLit={single}/>)}</tr>)}
+          {this.state.board.map((row, rIndex)=> <tr key={rIndex}>{row.map((single, sIndex)=><Cell key={`${rIndex}-${sIndex}`} isLit={single} flipCellsAroundMe={()=>this.flipCellsAround(`${rIndex}-${sIndex}`)}/>)}</tr>)}
         </tbody>
       </table>
     )
