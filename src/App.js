@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Board from "./Components/Board";
+import Game from "./Components/Game";
 import "./App.css";
 
 /** Simple app that just shows the LightsOut game. */
@@ -8,7 +8,7 @@ class App extends Component {
   render() {
     return (
       <div className='App'>
-        <Board />
+        <Game />
       </div>
     );
   }
